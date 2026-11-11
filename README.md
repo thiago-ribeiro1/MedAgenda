@@ -1,4 +1,4 @@
-# MedAgenda — Plano de Testes e Validação
+# MedAgenda 
 
 Projeto da disciplina **Elaborar Plano de Testes e Validação de um Software (2026.2)** — Sistemas de Informação, Unifacisa.
 Prof. Bruno Rafael Araújo Vasconcelos.
