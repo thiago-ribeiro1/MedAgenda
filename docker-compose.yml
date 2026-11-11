@@ -1,0 +1,41 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - dados-mongo:/data/db
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: ./api
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      MONGO_URL: mongodb://mongo:27017/medagenda
+      JWT_SECRET: troque-este-segredo
+      SEED_AO_INICIAR: "true"
+      TZ: America/Sao_Paulo
+      # Opcional: chave da API de IA para o assistente virtual (sem ela, usa o assistente local)
+      IA_API_KEY: ${IA_API_KEY:-}
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+
+  web:
+    build: ./web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "8080:80"
+
+volumes:
+  dados-mongo:

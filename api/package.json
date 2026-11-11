@@ -1,0 +1,21 @@
+{
+  "name": "medagenda-api",
+  "version": "1.0.0",
+  "description": "API do MedAgenda - sistema de clínica médica",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0",
+    "pdfkit": "^0.15.2"
+  }
+}
